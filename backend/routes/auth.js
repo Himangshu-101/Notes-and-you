@@ -11,7 +11,7 @@ const JWT_SECRET = 'Himagshu$boy';
 
 // Route1 : Create a user using : POST "/api/auth/createuser". Doesn't require Auth 
 router.post('/createuser', [
-  body('name', 'Enter a valid name').isLength({min : 3}),
+  body('name', 'Enter a valid name').isLength({min : 5}),
   body('email', 'Enter a valid email').isEmail(),
   body('password', 'Minimum of 8 charachters').isLength({ min: 8 })
 ], async (req, res) => {
@@ -53,6 +53,7 @@ router.post('/createuser', [
     }
     const authToken = jwt.sign(data, JWT_SECRET);
 
+    // res.json({user, authToken});
     res.json({authToken});
   }
 
