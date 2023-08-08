@@ -15,9 +15,8 @@ const NoteState = (props) => {
       }
     });
 
-    // Parsing Error here
     const json = await response.json();
-    console.log(json);
+    // console.log(json);
     setNotes(json);
 
   }
@@ -54,7 +53,17 @@ const NoteState = (props) => {
     setNotes(notes.concat(note));
   }
 
-  const deleteNote = (id) => {
+  const deleteNote = async (id) => {
+    const response = await fetch(`${host}/api/notes/deletenotes/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRjYmY3ZjgxMWNkZGYzNmVlNDViYjU1In0sImlhdCI6MTY5MTA5MDkwOX0.ahh_k54tbR2aawPh-6R5v_MeZLfiI5Vv_tpWc-wAKog"
+      },
+    });
+    const json = response.json();
+    console.log(json);
+
     console.log("Deleting node with id : " + id);
     const newNotes = notes.filter((note) => { return note._id !== id });
     setNotes(newNotes);
