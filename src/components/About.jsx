@@ -4,15 +4,10 @@ import { useEffect } from "react"
 
 const About = () => {
 
-    const amd = useContext(NoteContext)
-    const handleOnClick = () =>{
-        amd.update();
-    }
-
     return (
         <div>
-            <h1>My name is {amd.state.name} and my branch is {amd.state.branch}.</h1>
-            <button onClick={handleOnClick}>CLICK HERE</button>
+            <h2>This is the about page</h2>
+            <h2>This page will be updated shortly...</h2>
         </div>
     )
 }
