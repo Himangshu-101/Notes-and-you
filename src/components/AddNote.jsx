@@ -23,15 +23,15 @@ const AddNote = () => {
             <h2>Add your notes !</h2>
             <form className="my-3">
                 <div className="form-group my-2">
-                    <label htmlFor="title">Title</label>
+                    <label htmlhtmlFor="title">Title</label>
                     <input type="title" className="form-control my-1" id="title" name="title" value={note.title} onChange={onChange}/>
                 </div>
                 <div className="form-group my-2">
-                    <label htmlFor="description">Description</label>
+                    <label htmlhtmlFor="description">Description</label>
                     <input type="text" className="form-control my-1" id="description" name="description" value={note.description} onChange={onChange}/>
                 </div>
                 <div className="form-group my-2">
-                    <label htmlFor="tag">Tag</label>
+                    <label htmlhtmlFor="tag">Tag</label>
                     <input type="text" className="form-control my-1" id="tag" name="tag" value={note.tag} onChange={onChange}/>
                 </div>
                 <button disabled={note.title.length < 5 || note.description.length < 5} type="submit" className="btn btn-primary my-3" onClick={handleClick}>Submit</button>

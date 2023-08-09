@@ -49,15 +49,15 @@ const Notes = () => {
                         <div className="modal-body">
                             <form className="my-3">
                                 <div className="form-group my-2">
-                                    <label htmlFor="title">Title</label>
+                                    <label htmlhtmlFor="title">Title</label>
                                     <input type="title" className="form-control my-1" id="Etitle" name="Etitle" value={note.Etitle} onChange={onChange} />
                                 </div>
                                 <div className="form-group my-2">
-                                    <label htmlFor="description">Description</label>
+                                    <label htmlhtmlFor="description">Description</label>
                                     <input type="text" className="form-control my-1" id="Edescription" name="Edescription" value={note.Edescription} onChange={onChange} />
                                 </div>
                                 <div className="form-group my-2">
-                                    <label htmlFor="tag">Tag</label>
+                                    <label htmlhtmlFor="tag">Tag</label>
                                     <input type="text" className="form-control my-1" id="Etag" name="Etag" value={note.Etag} onChange={onChange} />
                                 </div>
                             </form>
