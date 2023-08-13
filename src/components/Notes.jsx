@@ -2,15 +2,22 @@ import { useContext, useRef, useEffect, useState } from "react"
 import NoteContext from "../context/notes/NoteContext";
 import NoteItem from "./NoteItem";
 import AddNote from "./AddNote";
+import { useNavigate } from "react-router-dom";
 
-const Notes = () => {
+const Notes = (props) => {
 
+    let navigate = useNavigate();
     const [note, setNote] = useState({ Etitle: "", Edescription: "", Etag: "" });
     const context = useContext(NoteContext);
     const { notes, updateNote, getNotes } = context;
 
     useEffect(() => {
-        getNotes();
+        if (localStorage.getItem('token')) {
+            getNotes();
+        }
+        else {
+            navigate("/login");
+        }
     }, []);
 
     const ref = useRef(null);
@@ -24,6 +31,7 @@ const Notes = () => {
     const handleClick = (e) => {
         updateNote(note.id, note.Etitle, note.Edescription, note.Etag);
         refClose.current.click();
+        props.showAlert("Updated successfully", "success");
     }
 
     const onChange = (e) => {
@@ -33,7 +41,7 @@ const Notes = () => {
 
     return (
         <>
-            <AddNote />
+            <AddNote showAlert={props.showAlert} />
 
             <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Edit Modal
@@ -70,16 +78,18 @@ const Notes = () => {
                 </div>
             </div>
 
-            <div className="row my-3 justify-content-md-center">
-                <h2>Your Notes</h2>
-                <div className="container">
-                    {notes.length === 0 &&
-                        <p className="text-center">You currently don't have any notes in the directory</p>
-                    }
+            <div className="container">
+                <div className="row my-3 justify-content-md-center">
+                    <h2>Your notes</h2>
+                    <div className="container">
+                        {notes.length === 0 &&
+                            <p className="text-center">You currently don't have any notes in the directory</p>
+                        }
+                    </div>
+                    {notes.map((note) => {
+                        return <NoteItem note={note} editNote={editNote} showAlert={props.showAlert} key={note._id} />
+                    })}
                 </div>
-                {notes.map((note) => {
-                    return <NoteItem note={note} editNote={editNote} key={note._id} />
-                })}
             </div>
         </>
     )
