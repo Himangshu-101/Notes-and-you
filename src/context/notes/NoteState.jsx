@@ -2,7 +2,7 @@ import { useState } from "react";
 import NoteContext from "./NoteContext";
 
 const NoteState = (props) => {
-  const host = "https://notes-and-you.vercel.app/";
+  const host = "https://notes-and-you.vercel.app";
 
   // Get all notes from fetch
   const getNotes = async () => {
